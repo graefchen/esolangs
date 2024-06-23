@@ -1,11 +1,8 @@
 #include <stdio.h>
 typedef short int I;typedef char C;typedef void V;
-C a[65535] = {0};I p = 0;I s[32];I si=0;
-V sa(I p){s[si]=p;si++;}
-I sp(V){return s[--si];}
+C a[65535] = {0};I p = 0;
 I mr(C *c, I i) {
   I s = 1;
-  if (a[p] == 0) {
     while (s!=0) {
       if (c[i] == '[')
         s++;
@@ -13,12 +10,10 @@ I mr(C *c, I i) {
         s--;
       i++;
     }
-  }
   return --i;
 }
 I ml(C *c, I i) {
   I s = 1;
-  if (a[p] != 0) {
     while (s!=0) {
       if (c[i] == ']')
         s++;
@@ -26,7 +21,6 @@ I ml(C *c, I i) {
         s--;
       i--;
     }
-  }
   return ++i;
 }
 V r(C *c) {
@@ -51,18 +45,18 @@ V r(C *c) {
       a[p] = getchar();
       break;
     case ('['):
-      i = mr(c, i+1);
+      if(a[p]==0)i = mr(c, i+1);
       break;
     case (']'):
-      i = ml(c, i-1);
+	if(a[p] != 0)i = ml(c, i-1);
       break;
     }
   }
 }
 int main(int c, C **v) {
-  {
-    C c[1024];
-    printf("bf> ");
+  while(1){
+    C c[2048];
+    printf("> ");
     if (!fgets(c, sizeof(c), stdin)) {
       printf("\n");
     }
