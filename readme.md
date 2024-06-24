@@ -6,3 +6,4 @@ Some esolangs in different programming languages.
 
 - brainfuck
 - deadfish
+- xkcd (deadfish dialect)
